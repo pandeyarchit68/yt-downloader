@@ -1,0 +1,27 @@
+# Downloaded videos
+downloads/
+*.mp4
+*.mp3
+*.mkv
+*.webm
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment
+.env
+venv/
+env/
+
+# Logs
+*.log
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
