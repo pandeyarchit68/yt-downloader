@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy – YT Downloader</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 60%, #16213e 100%); }
+        .nav-link { transition: color 0.2s; }
+        .nav-link:hover { color: #ef4444; }
+        .card { background: rgba(24,24,27,0.85); backdrop-filter: blur(8px); }
+        .prose p, .prose li { color: #9ca3af; line-height: 1.75; }
+        .prose h2 { color: #fff; font-size: 1.125rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+    </style>
+</head>
+<body class="min-h-screen text-white">
+
+    <nav class="sticky top-0 z-50 bg-zinc-950/90 backdrop-blur border-b border-zinc-800">
+        <div class="max-w-5xl mx-auto px-6 py-3 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2 font-bold text-lg tracking-tight">
+                <span class="text-red-500 text-2xl">▶</span> YT Downloader
+            </a>
+            <div class="flex items-center gap-6 text-sm font-medium text-gray-300">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="faq.html" class="nav-link">FAQ</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-3xl mx-auto pt-14 px-6 pb-20">
+        <div class="text-center mb-10">
+            <h1 class="text-4xl font-extrabold mb-3">Privacy <span class="text-red-500">Policy</span></h1>
+            <p class="text-gray-500 text-sm">Last updated: April 2026</p>
+        </div>
+
+        <div class="card rounded-2xl p-8 border border-zinc-800 prose">
+            <h2>No Data Collection</h2>
+            <p>YT Downloader runs entirely on your local machine. We do not collect, store, or transmit any personal data, usage statistics, or download history to any external server.</p>
+
+            <h2>Local Processing Only</h2>
+            <p>All downloads are processed locally using yt-dlp and ffmpeg. The only network requests made are directly to YouTube's servers to fetch the video you requested.</p>
+
+            <h2>Thumbnail Previews</h2>
+            <p>When you paste a YouTube URL, the app fetches a thumbnail image and video metadata directly from YouTube's public APIs (img.youtube.com and youtube.com/oembed). No data about this request is logged or stored by us.</p>
+
+            <h2>No Cookies or Tracking</h2>
+            <p>This application does not use cookies, analytics, or any third-party tracking scripts.</p>
+
+            <h2>Third-Party Services</h2>
+            <p>The only third-party service involved is YouTube itself, when fetching video content. YouTube's own <a href="https://policies.google.com/privacy" target="_blank" class="text-red-400 hover:underline">Privacy Policy</a> applies to those requests.</p>
+
+            <h2>Contact</h2>
+            <p>If you have any questions about this policy, please <a href="contact.html" class="text-red-400 hover:underline">contact us</a>.</p>
+        </div>
+    </div>
+
+</body>
+</html>

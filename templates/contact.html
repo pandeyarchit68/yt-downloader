@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact – YT Downloader</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 60%, #16213e 100%); }
+        .nav-link { transition: color 0.2s; }
+        .nav-link:hover { color: #ef4444; }
+        .nav-link.active { color: #ef4444; border-bottom: 2px solid #ef4444; }
+        .card { background: rgba(24,24,27,0.85); backdrop-filter: blur(8px); }
+        input:focus, textarea:focus { box-shadow: 0 0 0 2px #ef444455; }
+    </style>
+</head>
+<body class="min-h-screen text-white">
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-zinc-950/90 backdrop-blur border-b border-zinc-800">
+        <div class="max-w-5xl mx-auto px-6 py-3 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2 font-bold text-lg tracking-tight">
+                <span class="text-red-500 text-2xl">▶</span> YT Downloader
+            </a>
+            <div class="flex items-center gap-6 text-sm font-medium text-gray-300">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="faq.html" class="nav-link">FAQ</a>
+                <a href="contact.html" class="nav-link active pb-0.5">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-2xl mx-auto pt-14 px-6 pb-20">
+        <div class="text-center mb-12">
+            <div class="inline-flex items-center gap-2 bg-red-600/10 border border-red-600/30 text-red-400 text-xs font-semibold px-3 py-1 rounded-full mb-4">
+                Get In Touch
+            </div>
+            <h1 class="text-4xl font-extrabold mb-3">Contact <span class="text-red-500">Us</span></h1>
+            <p class="text-gray-400 text-lg">Found a bug? Have a suggestion? We'd love to hear from you.</p>
+        </div>
+
+        <div class="card rounded-2xl p-8 border border-zinc-800 shadow-2xl">
+            <form id="contact-form" class="space-y-5">
+                <div>
+                    <label class="block text-xs text-gray-400 mb-2 uppercase tracking-wider">Your Name</label>
+                    <input type="text" name="name" placeholder="John Doe" required
+                           class="w-full px-5 py-3 bg-zinc-800 border border-zinc-700 rounded-xl focus:outline-none focus:border-red-500 transition">
+                </div>
+                <div>
+                    <label class="block text-xs text-gray-400 mb-2 uppercase tracking-wider">Email Address</label>
+                    <input type="email" name="email" placeholder="you@example.com" required
+                           class="w-full px-5 py-3 bg-zinc-800 border border-zinc-700 rounded-xl focus:outline-none focus:border-red-500 transition">
+                </div>
+                <div>
+                    <label class="block text-xs text-gray-400 mb-2 uppercase tracking-wider">Subject</label>
+                    <select name="subject"
+                            class="w-full px-5 py-3 bg-zinc-800 border border-zinc-700 rounded-xl focus:outline-none focus:border-red-500 transition">
+                        <option value="bug">🐛 Bug Report</option>
+                        <option value="feature">💡 Feature Request</option>
+                        <option value="question">❓ General Question</option>
+                        <option value="other">📬 Other</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs text-gray-400 mb-2 uppercase tracking-wider">Message</label>
+                    <textarea name="message" rows="5" placeholder="Describe your issue or idea…" required
+                              class="w-full px-5 py-3 bg-zinc-800 border border-zinc-700 rounded-xl focus:outline-none focus:border-red-500 transition resize-none"></textarea>
+                </div>
+                <button type="submit"
+                        class="w-full bg-red-600 hover:bg-red-500 active:scale-95 transition-all py-4 rounded-2xl text-lg font-bold shadow-lg shadow-red-900/30">
+                    Send Message ✉️
+                </button>
+            </form>
+
+            <!-- Success state -->
+            <div id="success-msg" class="hidden text-center py-8">
+                <div class="text-5xl mb-4">✅</div>
+                <h2 class="text-2xl font-bold mb-2">Message Sent!</h2>
+                <p class="text-gray-400">Thanks for reaching out. We'll get back to you soon.</p>
+                <button onclick="resetForm()" class="mt-6 text-red-400 hover:text-red-300 underline text-sm">Send another message</button>
+            </div>
+        </div>
+
+        <div class="mt-8 grid grid-cols-2 gap-4 text-center">
+            <div class="card rounded-2xl p-5 border border-zinc-800">
+                <div class="text-2xl mb-2">📖</div>
+                <p class="text-sm text-gray-400">Check the <a href="faq.html" class="text-red-400 hover:underline">FAQ</a> first — your question might already be answered.</p>
+            </div>
+            <div class="card rounded-2xl p-5 border border-zinc-800">
+                <div class="text-2xl mb-2">🐙</div>
+                <p class="text-sm text-gray-400">Open an issue on <a href="#" class="text-red-400 hover:underline">GitHub</a> for bugs and feature requests.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('contact-form');
+        const successMsg = document.getElementById('success-msg');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            form.classList.add('hidden');
+            successMsg.classList.remove('hidden');
+        });
+
+        function resetForm() {
+            form.reset();
+            form.classList.remove('hidden');
+            successMsg.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
