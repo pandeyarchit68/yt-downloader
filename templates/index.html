@@ -3,186 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YT Downloader – Home</title>
+    <title>YT Downloader - Fast & Private</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 60%, #16213e 100%); }
-        .nav-link { transition: color 0.2s; }
-        .nav-link:hover { color: #ef4444; }
-        .nav-link.active { color: #ef4444; border-bottom: 2px solid #ef4444; }
-        input:focus, select:focus { box-shadow: 0 0 0 2px #ef444455; }
-        #thumbnail-preview { transition: all 0.3s ease; }
-        .card { background: rgba(24,24,27,0.85); backdrop-filter: blur(8px); }
+        body {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+        }
+        .hero-bg {
+            background: radial-gradient(circle at center, rgba(239, 68, 68, 0.15), transparent 70%);
+        }
+        .nav-link {
+            position: relative;
+            transition: all 0.3s;
+        }
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: #ef4444;
+            transition: width 0.3s;
+        }
+        .nav-link:hover:after, .nav-link.active:after {
+            width: 100%;
+        }
     </style>
 </head>
 <body class="min-h-screen text-white">
 
     <!-- Navbar -->
-    <nav class="sticky top-0 z-50 bg-zinc-950/90 backdrop-blur border-b border-zinc-800">
-        <div class="max-w-5xl mx-auto px-6 py-3 flex items-center justify-between">
-            <a href="index.html" class="flex items-center gap-2 font-bold text-lg tracking-tight">
-                <span class="text-red-500 text-2xl">▶</span> YT Downloader
+    <nav class="sticky top-0 z-50 bg-zinc-950/95 backdrop-blur-md border-b border-zinc-800">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-2 font-bold text-2xl">
+                <span class="text-red-500">▶</span> YT Downloader
             </a>
-            <div class="flex items-center gap-6 text-sm font-medium text-gray-300">
-                <a href="index.html" class="nav-link active pb-0.5">Home</a>
-                <a href="about.html" class="nav-link">About</a>
-                <a href="faq.html" class="nav-link">FAQ</a>
-                <a href="contact.html" class="nav-link">Contact</a>
+            <div class="flex items-center gap-8 text-sm font-medium">
+                <a href="/" class="nav-link active text-white">Home</a>
+                <a href="/about" class="nav-link">About</a>
+                <a href="/faq" class="nav-link">FAQ</a>
+                <a href="/contact" class="nav-link">Contact</a>
             </div>
         </div>
     </nav>
 
-    <div class="max-w-2xl mx-auto pt-14 px-6 pb-20">
-        <!-- Hero -->
-        <div class="text-center mb-10">
-            <div class="inline-flex items-center gap-2 bg-red-600/10 border border-red-600/30 text-red-400 text-xs font-semibold px-3 py-1 rounded-full mb-4">
-                🔒 Runs Locally · No Ads · Private
-            </div>
-            <h1 class="text-5xl font-extrabold mb-3 leading-tight">
-                YouTube <span class="text-red-500">Downloader</span>
+    <div class="max-w-3xl mx-auto pt-16 px-6 pb-20">
+        <div class="text-center mb-12 hero-bg py-8 rounded-3xl">
+            <h1 class="text-6xl font-black mb-4 tracking-tighter">
+                Download YouTube<br><span class="text-red-500">Videos</span> & Audio
             </h1>
-            <p class="text-gray-400 text-lg">Fast, clean, and private. Download any video in seconds.</p>
+            <p class="text-xl text-gray-400 max-w-md mx-auto">
+                Fast • No Ads • Private • High Quality
+            </p>
         </div>
-
-        <!-- Thumbnail Preview -->
-        <div id="thumbnail-preview" class="hidden card rounded-2xl p-4 mb-6 flex items-center gap-4 border border-zinc-700">
-            <img id="thumb-img" src="" alt="Thumbnail" class="w-32 h-20 object-cover rounded-xl flex-shrink-0 bg-zinc-800">
-            <div class="overflow-hidden">
-                <p id="thumb-title" class="font-semibold text-sm leading-snug line-clamp-2 text-white"></p>
-                <p id="thumb-channel" class="text-xs text-gray-400 mt-1"></p>
-                <p id="thumb-duration" class="text-xs text-red-400 mt-0.5"></p>
-            </div>
-        </div>
-        <div id="thumb-loading" class="hidden text-center text-gray-500 text-sm mb-4 animate-pulse">Fetching preview…</div>
 
         <!-- Form -->
-        <form action="/download" method="POST" class="card rounded-2xl p-8 shadow-2xl border border-zinc-800">
+        <form action="/download" method="POST" class="bg-zinc-900/70 backdrop-blur-xl border border-zinc-700 rounded-3xl p-10 shadow-2xl">
 
-            <div class="mb-5 relative">
-                <input
-                    type="text"
-                    name="url"
+            <div class="mb-8">
+                <input 
+                    type="text" 
+                    name="url" 
                     id="url-input"
-                    placeholder="Paste YouTube link here…"
+                    placeholder="Paste YouTube link here..."
                     required
-                    autocomplete="off"
-                    class="w-full px-5 py-4 bg-zinc-800 border border-zinc-700 rounded-xl focus:outline-none focus:border-red-500 text-lg pr-12 transition">
-                <button type="button" id="clear-btn" class="hidden absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white text-xl leading-none">✕</button>
+                    class="w-full px-6 py-5 bg-zinc-800 border border-zinc-700 rounded-2xl text-lg focus:outline-none focus:border-red-500 transition-all">
             </div>
 
-            <div class="grid grid-cols-2 gap-4 mb-5">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <div>
-                    <label class="block text-xs text-gray-400 mb-2 uppercase tracking-wider">Format</label>
-                    <select name="option"
-                            class="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-xl focus:outline-none focus:border-red-500 transition">
+                    <label class="block text-sm text-gray-400 mb-2">Format</label>
+                    <select name="option" class="w-full px-5 py-4 bg-zinc-800 border border-zinc-700 rounded-2xl focus:outline-none focus:border-red-500">
                         <option value="best">🎥 Best Video + Audio</option>
                         <option value="video">🎞️ Video Only</option>
                         <option value="audio">🎵 Audio Only (MP3)</option>
                     </select>
                 </div>
+
                 <div>
-                    <label class="block text-xs text-gray-400 mb-2 uppercase tracking-wider">Quality</label>
-                    <select name="resolution"
-                            class="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-xl focus:outline-none focus:border-red-500 transition">
+                    <label class="block text-sm text-gray-400 mb-2">Quality</label>
+                    <select name="resolution" class="w-full px-5 py-4 bg-zinc-800 border border-zinc-700 rounded-2xl focus:outline-none focus:border-red-500">
                         <option value="best">Best Available</option>
-                        <option value="2160">4K – 2160p</option>
-                        <option value="1440">2K – 1440p</option>
-                        <option value="1080" selected>1080p – Full HD</option>
-                        <option value="720">720p – HD</option>
-                        <option value="480">480p</option>
-                        <option value="360">360p</option>
+                        <option value="2160">4K (2160p)</option>
+                        <option value="1440">2K (1440p)</option>
+                        <option value="1080" selected>1080p (Full HD)</option>
+                        <option value="720">720p (HD)</option>
                     </select>
                 </div>
             </div>
 
-            <div class="mb-7">
-                <label class="flex items-center gap-3 cursor-pointer group">
-                    <input type="checkbox" name="subtitles" value="yes"
-                           class="w-5 h-5 accent-red-600 rounded">
-                    <span class="text-gray-300 group-hover:text-white transition">Download &amp; embed English subtitles</span>
-                </label>
+            <div class="mb-8 flex items-center gap-3">
+                <input type="checkbox" name="subtitles" value="yes" class="w-5 h-5 accent-red-600">
+                <span class="text-gray-300">Embed English Subtitles</span>
             </div>
 
-            <button
-                type="submit"
-                class="w-full bg-red-600 hover:bg-red-500 active:scale-95 transition-all py-4 rounded-2xl text-xl font-bold flex items-center justify-center gap-3 shadow-lg shadow-red-900/30">
+            <button type="submit"
+                class="w-full bg-red-600 hover:bg-red-500 py-5 rounded-2xl text-xl font-bold flex items-center justify-center gap-3 transition-all active:scale-[0.97]">
                 ⬇️ Download Now
             </button>
         </form>
 
-        <p class="text-center text-gray-600 text-xs mt-8">
-            For personal use only · Respect copyright laws ·
-            <a href="privacy.html" class="hover:text-gray-400 underline">Privacy</a> ·
-            <a href="terms.html" class="hover:text-gray-400 underline">Terms</a>
+        <p class="text-center text-xs text-gray-500 mt-10">
+            For personal & educational use only • Respect copyright
         </p>
     </div>
-
-    <script>
-        const urlInput = document.getElementById('url-input');
-        const clearBtn = document.getElementById('clear-btn');
-        const preview  = document.getElementById('thumbnail-preview');
-        const loading  = document.getElementById('thumb-loading');
-        const thumbImg = document.getElementById('thumb-img');
-        const thumbTitle   = document.getElementById('thumb-title');
-        const thumbChannel = document.getElementById('thumb-channel');
-        const thumbDuration = document.getElementById('thumb-duration');
-
-        let debounceTimer;
-
-        function extractVideoId(url) {
-            const patterns = [
-                /(?:v=|\/embed\/|\/shorts\/|youtu\.be\/)([A-Za-z0-9_-]{11})/
-            ];
-            for (const p of patterns) {
-                const m = url.match(p);
-                if (m) return m[1];
-            }
-            return null;
-        }
-
-        urlInput.addEventListener('input', () => {
-            const val = urlInput.value.trim();
-            clearBtn.classList.toggle('hidden', !val);
-            clearTimeout(debounceTimer);
-
-            if (!val) { preview.classList.add('hidden'); loading.classList.add('hidden'); return; }
-
-            const vid = extractVideoId(val);
-            if (!vid) { preview.classList.add('hidden'); loading.classList.add('hidden'); return; }
-
-            loading.classList.remove('hidden');
-            preview.classList.add('hidden');
-
-            debounceTimer = setTimeout(async () => {
-                // Use oEmbed for title + author (no API key needed)
-                try {
-                    const res = await fetch(`https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${vid}&format=json`);
-                    if (!res.ok) throw new Error();
-                    const data = await res.json();
-                    thumbImg.src = `https://img.youtube.com/vi/${vid}/mqdefault.jpg`;
-                    thumbTitle.textContent = data.title || '';
-                    thumbChannel.textContent = data.author_name || '';
-                    thumbDuration.textContent = '';
-                    loading.classList.add('hidden');
-                    preview.classList.remove('hidden');
-                } catch {
-                    thumbImg.src = `https://img.youtube.com/vi/${vid}/mqdefault.jpg`;
-                    thumbTitle.textContent = 'YouTube Video';
-                    thumbChannel.textContent = '';
-                    thumbDuration.textContent = '';
-                    loading.classList.add('hidden');
-                    preview.classList.remove('hidden');
-                }
-            }, 600);
-        });
-
-        clearBtn.addEventListener('click', () => {
-            urlInput.value = '';
-            clearBtn.classList.add('hidden');
-            preview.classList.add('hidden');
-            loading.classList.add('hidden');
-            urlInput.focus();
-        });
-    </script>
 </body>
 </html>
