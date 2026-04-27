@@ -3,102 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact – YT Downloader</title>
+    <title>Contact - YT Downloader</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 60%, #16213e 100%); }
-        .nav-link { transition: color 0.2s; }
-        .nav-link:hover { color: #ef4444; }
-        .nav-link.active { color: #ef4444; border-bottom: 2px solid #ef4444; }
-        .card { background: rgba(24,24,27,0.85); backdrop-filter: blur(8px); }
-        input:focus, textarea:focus { box-shadow: 0 0 0 2px #ef444455; }
+        body { background: #0a0a0a; font-family: system-ui, -apple-system, sans-serif; }
+        .nav-glass { background: rgba(10,10,10,0.9); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .nav-link { color: #71717a; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
+        .nav-link:hover { color: #fff; }
+        .nav-link.active { color: #fff; }
+        .card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); }
+        .badge { background: rgba(220,38,38,0.1); border: 1px solid rgba(220,38,38,0.25); color: #f87171; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; }
+        .footer-link { color: #52525b; font-size: 0.8rem; transition: color 0.2s; }
+        .footer-link:hover { color: #a1a1aa; }
+        .input-field { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; transition: border-color 0.2s; width: 100%; }
+        .input-field:focus { outline: none; border-color: rgba(220,38,38,0.7); }
+        .input-field::placeholder { color: #52525b; }
+        select.input-field option { background: #111; }
+        .btn-red { background: #dc2626; transition: background 0.2s, transform 0.1s; }
+        .btn-red:hover { background: #b91c1c; }
+        .btn-red:active { transform: scale(0.98); }
     </style>
 </head>
 <body class="min-h-screen text-white">
 
-    <!-- Navbar -->
-    <nav class="sticky top-0 z-50 bg-zinc-950/90 backdrop-blur border-b border-zinc-800">
-        <div class="max-w-5xl mx-auto px-6 py-3 flex items-center justify-between">
-            <a href="/" class="flex items-center gap-2 font-bold text-lg tracking-tight">
-                <span class="text-red-500 text-2xl">▶</span> YT Downloader
+    <nav class="nav-glass sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-5 h-14 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-2 font-bold text-white tracking-tight">
+                <span class="bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-md">YT</span>
+                Downloader
             </a>
-            <div class="flex items-center gap-6 text-sm font-medium text-gray-300">
+            <div class="flex items-center gap-7">
                 <a href="/" class="nav-link">Home</a>
                 <a href="/about" class="nav-link">About</a>
-                <a href="/faq" class="nav-link">FAQ</a>
-                <a href="/contact" class="nav-link active pb-0.5">Contact</a>
+                <a href="/contact" class="nav-link active">Contact</a>
             </div>
         </div>
     </nav>
 
-    <div class="max-w-2xl mx-auto pt-14 px-6 pb-20">
-        <div class="text-center mb-12">
-            <div class="inline-flex items-center gap-2 bg-red-600/10 border border-red-600/30 text-red-400 text-xs font-semibold px-3 py-1 rounded-full mb-4">
-                Get In Touch
+    <div class="max-w-xl mx-auto px-5 pt-16 pb-24">
+
+        <!-- Header -->
+        <div class="mb-10">
+            <div class="inline-flex items-center gap-2 badge px-3 py-1.5 rounded-full mb-5">
+                <span class="w-1.5 h-1.5 bg-red-500 rounded-full"></span>
+                Get in touch
             </div>
-            <h1 class="text-4xl font-extrabold mb-3">Contact <span class="text-red-500">Us</span></h1>
-            <p class="text-gray-400 text-lg">Found a bug? Have a suggestion? We'd love to hear from you.</p>
+            <h1 class="text-4xl font-extrabold tracking-tight leading-tight mb-4">
+                We'd love to <span class="text-red-500">hear from you</span>
+            </h1>
+            <p class="text-zinc-400 text-base leading-relaxed">
+                Found a bug, have a suggestion, or just want to say hello?
+            </p>
         </div>
 
-        <div class="card rounded-2xl p-8 border border-zinc-800 shadow-2xl">
+        <!-- Form -->
+        <div class="card rounded-2xl p-7 mb-4">
             <form id="contact-form" class="space-y-5">
-                <div>
-                    <label class="block text-xs text-gray-400 mb-2 uppercase tracking-wider">Your Name</label>
-                    <input type="text" name="name" placeholder="John Doe" required
-                           class="w-full px-5 py-3 bg-zinc-800 border border-zinc-700 rounded-xl focus:outline-none focus:border-red-500 transition">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-2">Name</label>
+                        <input type="text" name="name" placeholder="Your name" required
+                               class="input-field px-4 py-3 rounded-xl text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-2">Email</label>
+                        <input type="email" name="email" placeholder="you@example.com" required
+                               class="input-field px-4 py-3 rounded-xl text-sm">
+                    </div>
                 </div>
                 <div>
-                    <label class="block text-xs text-gray-400 mb-2 uppercase tracking-wider">Email Address</label>
-                    <input type="email" name="email" placeholder="you@example.com" required
-                           class="w-full px-5 py-3 bg-zinc-800 border border-zinc-700 rounded-xl focus:outline-none focus:border-red-500 transition">
-                </div>
-                <div>
-                    <label class="block text-xs text-gray-400 mb-2 uppercase tracking-wider">Subject</label>
-                    <select name="subject"
-                            class="w-full px-5 py-3 bg-zinc-800 border border-zinc-700 rounded-xl focus:outline-none focus:border-red-500 transition">
-                        <option value="bug">🐛 Bug Report</option>
-                        <option value="feature">💡 Feature Request</option>
-                        <option value="question">❓ General Question</option>
-                        <option value="other">📬 Other</option>
+                    <label class="block text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-2">Subject</label>
+                    <select name="subject" class="input-field px-4 py-3 rounded-xl text-sm cursor-pointer">
+                        <option value="bug">Bug Report</option>
+                        <option value="feature">Feature Request</option>
+                        <option value="question">General Question</option>
+                        <option value="other">Other</option>
                     </select>
                 </div>
                 <div>
-                    <label class="block text-xs text-gray-400 mb-2 uppercase tracking-wider">Message</label>
-                    <textarea name="message" rows="5" placeholder="Describe your issue or idea…" required
-                              class="w-full px-5 py-3 bg-zinc-800 border border-zinc-700 rounded-xl focus:outline-none focus:border-red-500 transition resize-none"></textarea>
+                    <label class="block text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-2">Message</label>
+                    <textarea name="message" rows="5" placeholder="Describe your issue or idea..." required
+                              class="input-field px-4 py-3 rounded-xl text-sm resize-none leading-relaxed"></textarea>
                 </div>
-                <button type="submit"
-                        class="w-full bg-red-600 hover:bg-red-500 active:scale-95 transition-all py-4 rounded-2xl text-lg font-bold shadow-lg shadow-red-900/30">
-                    Send Message ✉️
+                <button type="submit" class="btn-red w-full py-3.5 rounded-xl font-semibold text-sm">
+                    Send Message
                 </button>
             </form>
 
-            <!-- Success state -->
-            <div id="success-msg" class="hidden text-center py-8">
-                <div class="text-5xl mb-4">✅</div>
-                <h2 class="text-2xl font-bold mb-2">Message Sent!</h2>
-                <p class="text-gray-400">Thanks for reaching out. We'll get back to you soon.</p>
-                <button onclick="resetForm()" class="mt-6 text-red-400 hover:text-red-300 underline text-sm">Send another message</button>
+            <!-- Success -->
+            <div id="success-msg" class="hidden text-center py-10">
+                <div class="w-10 h-10 bg-green-500/10 border border-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg width="16" height="16" fill="none" stroke="#22c55e" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <h2 class="text-lg font-bold mb-1">Message sent</h2>
+                <p class="text-zinc-500 text-sm mb-5">Thanks for reaching out. We'll get back to you shortly.</p>
+                <button onclick="resetForm()" class="text-red-500 hover:text-red-400 text-sm font-medium transition-colors">Send another</button>
             </div>
         </div>
 
-        <div class="mt-8 grid grid-cols-2 gap-4 text-center">
-            <div class="card rounded-2xl p-5 border border-zinc-800">
-                <div class="text-2xl mb-2">📖</div>
-                <p class="text-sm text-gray-400">Check the <a href="/faq" class="text-red-400 hover:underline">FAQ</a> first — your question might already be answered.</p>
+        <!-- Info -->
+        <div class="grid grid-cols-2 gap-3">
+            <div class="card rounded-xl p-4">
+                <div class="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-1">Response time</div>
+                <div class="text-sm text-zinc-300">Within 24–48 hours on business days.</div>
             </div>
-            <div class="card rounded-2xl p-5 border border-zinc-800">
-                <div class="text-2xl mb-2">🐙</div>
-                <p class="text-sm text-gray-400">Open an issue on <a href="#" class="text-red-400 hover:underline">GitHub</a> for bugs and feature requests.</p>
+            <div class="card rounded-xl p-4">
+                <div class="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-1">Bugs & features</div>
+                <div class="text-sm text-zinc-300">Check the <a href="/faq" class="text-red-500 hover:text-red-400 transition-colors">FAQ</a> first - it might be answered.</div>
             </div>
         </div>
+
     </div>
+
+    <footer style="border-top: 1px solid rgba(255,255,255,0.06);">
+        <div class="max-w-5xl mx-auto px-5 py-7 flex flex-col md:flex-row items-center justify-between gap-4">
+            <span class="text-xs text-zinc-700">© 2026 YT Downloader</span>
+            <div class="flex items-center gap-6">
+                <a href="/privacy" class="footer-link">Privacy</a>
+                <a href="/terms" class="footer-link">Terms</a>
+                <a href="/faq" class="footer-link">FAQ</a>
+                <a href="/contact" class="footer-link">Contact</a>
+            </div>
+        </div>
+    </footer>
 
     <script>
         const form = document.getElementById('contact-form');
         const successMsg = document.getElementById('success-msg');
 
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', function (e) {
             e.preventDefault();
             form.classList.add('hidden');
             successMsg.classList.remove('hidden');
@@ -110,5 +143,6 @@
             successMsg.classList.add('hidden');
         }
     </script>
+
 </body>
 </html>

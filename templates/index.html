@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YT Downloader — Fast, Private, Free</title>
+    <title>YT Downloader - Fast, Private, Free</title>
     <meta name="description" content="Download YouTube videos and audio in the highest quality. No ads, no tracking, completely private.">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -86,13 +86,11 @@
             <div class="flex items-center gap-7">
                 <a href="/" class="nav-link active">Home</a>
                 <a href="/about" class="nav-link">About</a>
-                <a href="/faq" class="nav-link">FAQ</a>
                 <a href="/contact" class="nav-link">Contact</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero -->
     <section class="max-w-2xl mx-auto px-5 pt-16 pb-4 text-center">
         <div class="inline-flex items-center gap-2 badge px-3 py-1.5 rounded-full mb-6">
             <span class="w-1.5 h-1.5 bg-red-500 rounded-full inline-block"></span>
@@ -107,57 +105,62 @@
         </p>
     </section>
 
-    <!-- Downloader Form -->
     <section class="max-w-xl mx-auto px-5 py-8">
         <div class="card rounded-2xl p-7">
             <form action="/download" method="POST" id="dl-form">
 
-                <!-- URL -->
                 <div class="mb-5">
                     <label class="block text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-2">YouTube URL</label>
                     <input
                         type="text"
                         name="url"
+                        id="url-input"
                         placeholder="https://www.youtube.com/watch?v=..."
                         required
                         autocomplete="off"
                         class="input-field px-4 py-3 rounded-xl text-sm">
                 </div>
 
-                <!-- Format + Quality -->
+                <div id="preview" class="hidden mb-5 flex gap-4 items-center bg-zinc-900 border border-zinc-800 rounded-xl p-3">
+                    <img id="thumb" src="" alt="thumbnail" class="w-28 h-16 object-cover rounded-lg flex-shrink-0">
+                    <div class="min-w-0">
+                        <p id="vid-title" class="text-sm font-semibold text-white leading-snug line-clamp-2"></p>
+                        <p id="vid-channel" class="text-xs text-zinc-500 mt-1"></p>
+                    </div>
+                </div>
+
                 <div class="grid grid-cols-2 gap-4 mb-5">
                     <div>
                         <label class="block text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-2">Format</label>
-                        <select name="option" class="input-field px-4 py-3 rounded-xl text-sm cursor-pointer">
-                            <option value="best">Video + Audio</option>
+                        <select name="option" id="format-select" class="input-field px-4 py-3 rounded-xl text-sm cursor-pointer">
+                            <option value="best" selected>Best Video + Audio (Recommended)</option>
                             <option value="video">Video Only</option>
                             <option value="audio">Audio Only (MP3)</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-2">Quality</label>
-                        <select name="resolution" class="input-field px-4 py-3 rounded-xl text-sm cursor-pointer">
+                        <label class="block text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-2" id="quality-label">Quality</label>
+                        <select name="resolution" id="quality-select" class="input-field px-4 py-3 rounded-xl text-sm cursor-pointer">
                             <option value="best">Best Available</option>
-                            <option value="2160">4K — 2160p</option>
-                            <option value="1440">2K — 1440p</option>
-                            <option value="1080" selected>Full HD — 1080p</option>
-                            <option value="720">HD — 720p</option>
-                            <option value="480">SD — 480p</option>
+                            <option value="2160">4K - 2160p</option>
+                            <option value="1440">2K - 1440p</option>
+                            <option value="1080" selected>Full HD - 1080p</option>
+                            <option value="720">HD - 720p</option>
+                            <option value="480">SD - 480p</option>
                         </select>
                     </div>
                 </div>
 
-                <!-- Subtitles toggle -->
                 <label class="flex items-center gap-3 mb-6 cursor-pointer select-none">
                     <input type="checkbox" name="subtitles" value="yes" class="w-4 h-4 accent-red-600 rounded">
                     <span class="text-sm text-zinc-400">Embed English subtitles</span>
                 </label>
 
-                <!-- Submit -->
                 <button type="submit" id="dl-btn" class="btn-red w-full py-3.5 rounded-xl font-semibold text-sm flex items-center justify-center gap-2">
                     <div class="spinner" id="spinner"></div>
                     <span id="btn-text">Download Now</span>
                 </button>
+                <input type="hidden" name="token" id="dl-token">
 
             </form>
         </div>
@@ -167,7 +170,15 @@
         </p>
     </section>
 
-    <!-- Feature pills -->
+    <section class="max-w-xl mx-auto px-5 pb-8">
+        <div class="flex gap-3 items-start bg-yellow-500/5 border border-yellow-500/15 rounded-xl px-4 py-3.5">
+            <svg class="flex-shrink-0 mt-0.5" width="15" height="15" fill="none" stroke="#eab308" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <p class="text-xs text-zinc-400 leading-relaxed">
+                Some new or protected videos may download without audio. If that happens, try downloading as <span class="text-white font-medium">Audio Only</span> separately and merge it with video manually, or try a different video.
+            </p>
+        </div>
+    </section>
+
     <section class="max-w-xl mx-auto px-5 pb-20">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
             <div class="card rounded-xl px-4 py-3 text-center">
@@ -189,6 +200,12 @@
         </div>
     </section>
 
+    <div id="loading-overlay" class="hidden fixed inset-0 z-50 flex flex-col items-center justify-center" style="background: rgba(8,8,8,0.92); backdrop-filter: blur(8px);">
+        <div style="width:48px;height:48px;border:3px solid rgba(255,255,255,0.1);border-top-color:#dc2626;border-radius:50%;animation:spin 0.8s linear infinite;" class="mb-6"></div>
+        <p id="overlay-msg" class="text-white font-semibold text-lg mb-2">Processing your video...</p>
+        <p class="text-zinc-500 text-sm">This may take a few seconds depending on quality</p>
+    </div>
+
     <!-- Footer -->
     <footer style="border-top: 1px solid rgba(255,255,255,0.06);">
         <div class="max-w-5xl mx-auto px-5 py-7 flex flex-col md:flex-row items-center justify-between gap-4">
@@ -207,18 +224,117 @@
         const btn = document.getElementById('dl-btn');
         const spinner = document.getElementById('spinner');
         const btnText = document.getElementById('btn-text');
+        const urlInput = document.getElementById('url-input');
+        const preview = document.getElementById('preview');
+        const thumb = document.getElementById('thumb');
+        const vidTitle = document.getElementById('vid-title');
+        const vidChannel = document.getElementById('vid-channel');
+
+        const formatSelect = document.getElementById('format-select');
+        const qualitySelect = document.getElementById('quality-select');
+        const qualityLabel = document.getElementById('quality-label');
+
+        const videoOptions = `
+            <option value="best">Best Available</option>
+            <option value="2160">4K - 2160p</option>
+            <option value="1440">2K - 1440p</option>
+            <option value="1080" selected>Full HD - 1080p</option>
+            <option value="720">HD - 720p</option>
+            <option value="480">SD - 480p</option>`;
+
+        const audioOptions = `
+            <option value="192" selected>Best Quality - 192kbps</option>
+            <option value="128">High Quality - 128kbps</option>
+            <option value="96">Medium Quality - 96kbps</option>`;
+
+        formatSelect.addEventListener('change', function () {
+            if (this.value === 'audio') {
+                qualityLabel.textContent = 'Audio Quality';
+                qualitySelect.innerHTML = audioOptions;
+            } else {
+                qualityLabel.textContent = 'Quality';
+                qualitySelect.innerHTML = videoOptions;
+            }
+        });
+
+        let debounceTimer;
+        urlInput.addEventListener('input', function () {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(function () {
+                const url = urlInput.value.trim();
+                const match = url.match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([A-Za-z0-9_-]{11})/);
+                if (match && match[1]) {
+                    const id = match[1];
+                    thumb.src = 'https://img.youtube.com/vi/' + id + '/hqdefault.jpg';
+                    vidTitle.textContent = 'Loading...';
+                    vidChannel.textContent = '';
+                    preview.classList.remove('hidden');
+                    fetch('https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=' + id + '&format=json')
+                        .then(function (r) { return r.json(); })
+                        .then(function (data) {
+                            vidTitle.textContent = data.title || 'YouTube Video';
+                            vidChannel.textContent = data.author_name || '';
+                        })
+                        .catch(function () {
+                            vidTitle.textContent = 'YouTube Video';
+                        });
+                } else {
+                    preview.classList.add('hidden');
+                }
+            }, 400);
+        });
 
         form.addEventListener('submit', function () {
+            const token = Math.random().toString(36).slice(2) + Date.now().toString(36);
+            document.getElementById('dl-token').value = token;
+
             spinner.style.display = 'block';
             btnText.textContent = 'Preparing...';
             btn.disabled = true;
             btn.style.opacity = '0.7';
-            setTimeout(function () {
+
+            const overlay = document.getElementById('loading-overlay');
+            const overlayMsg = document.getElementById('overlay-msg');
+            overlay.classList.remove('hidden');
+
+            const messages = [
+                'Connecting to YouTube...',
+                'Fetching video stream...',
+                'Processing your video...',
+                'Merging audio & video...',
+                'Almost ready, hang tight...',
+                'Preparing your download...'
+            ];
+            let i = 0;
+            overlayMsg.textContent = messages[0];
+            const msgInterval = setInterval(function () {
+                i = (i + 1) % messages.length;
+                overlayMsg.textContent = messages[i];
+            }, 3000);
+
+            function dismissOverlay() {
+                clearInterval(msgInterval);
+                clearInterval(poller);
+                clearTimeout(safetyTimer);
+                overlay.classList.add('hidden');
                 spinner.style.display = 'none';
                 btnText.textContent = 'Download Now';
                 btn.disabled = false;
                 btn.style.opacity = '1';
-            }, 15000);
+            }
+
+            const poller = setInterval(function () {
+                fetch('/status/' + token)
+                    .then(function (r) { return r.json(); })
+                    .then(function (data) {
+                        if (data.status === 'done' || data.status === 'error') {
+                            dismissOverlay();
+                        }
+                    })
+                    .catch(function () {});
+            }, 800);
+
+            const safetyTimer = setTimeout(dismissOverlay, 120000);
         });
     </script>
 

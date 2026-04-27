@@ -3,59 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy – YT Downloader</title>
+    <title>Privacy Policy - YT Downloader</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 60%, #16213e 100%); }
-        .nav-link { transition: color 0.2s; }
-        .nav-link:hover { color: #ef4444; }
-        .card { background: rgba(24,24,27,0.85); backdrop-filter: blur(8px); }
-        .prose p, .prose li { color: #9ca3af; line-height: 1.75; }
-        .prose h2 { color: #fff; font-size: 1.125rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+        body { background: #0a0a0a; font-family: system-ui, -apple-system, sans-serif; }
+        .nav-glass { background: rgba(10,10,10,0.9); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .nav-link { color: #71717a; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
+        .nav-link:hover { color: #fff; }
+        .card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); }
+        .badge { background: rgba(220,38,38,0.1); border: 1px solid rgba(220,38,38,0.25); color: #f87171; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; }
+        .footer-link { color: #52525b; font-size: 0.8rem; transition: color 0.2s; }
+        .footer-link:hover { color: #a1a1aa; }
+        .prose-section { padding: 1.25rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .prose-section:last-child { border-bottom: none; padding-bottom: 0; }
+        .prose-section h2 { font-size: 0.875rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
+        .prose-section p { font-size: 0.875rem; color: #71717a; line-height: 1.75; }
+        .prose-section a { color: #ef4444; transition: color 0.2s; }
+        .prose-section a:hover { color: #f87171; }
+        .tldr-box { background: rgba(220,38,38,0.06); border: 1px solid rgba(220,38,38,0.15); border-radius: 12px; padding: 1rem 1.25rem; }
     </style>
 </head>
 <body class="min-h-screen text-white">
 
-    <nav class="sticky top-0 z-50 bg-zinc-950/90 backdrop-blur border-b border-zinc-800">
-        <div class="max-w-5xl mx-auto px-6 py-3 flex items-center justify-between">
-            <a href="/" class="flex items-center gap-2 font-bold text-lg tracking-tight">
-                <span class="text-red-500 text-2xl">▶</span> YT Downloader
+    <nav class="nav-glass sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-5 h-14 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-2 font-bold text-white tracking-tight">
+                <span class="bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-md">YT</span>
+                Downloader
             </a>
-            <div class="flex items-center gap-6 text-sm font-medium text-gray-300">
+            <div class="flex items-center gap-7">
                 <a href="/" class="nav-link">Home</a>
                 <a href="/about" class="nav-link">About</a>
-                <a href="/faq" class="nav-link">FAQ</a>
                 <a href="/contact" class="nav-link">Contact</a>
             </div>
         </div>
     </nav>
 
-    <div class="max-w-3xl mx-auto pt-14 px-6 pb-20">
-        <div class="text-center mb-10">
-            <h1 class="text-4xl font-extrabold mb-3">Privacy <span class="text-red-500">Policy</span></h1>
-            <p class="text-gray-500 text-sm">Last updated: April 2026</p>
+    <div class="max-w-2xl mx-auto px-5 pt-16 pb-24">
+
+        <div class="mb-8">
+            <div class="inline-flex items-center gap-2 badge px-3 py-1.5 rounded-full mb-5">
+                <span class="w-1.5 h-1.5 bg-red-500 rounded-full"></span>
+                Legal
+            </div>
+            <h1 class="text-4xl font-extrabold tracking-tight leading-tight mb-2">
+                Privacy <span class="text-red-500">Policy</span>
+            </h1>
+            <p class="text-zinc-600 text-sm">Last updated: April 2026</p>
         </div>
 
-        <div class="card rounded-2xl p-8 border border-zinc-800 prose">
-            <h2>No Data Collection</h2>
-            <p>YT Downloader runs entirely on your local machine. We do not collect, store, or transmit any personal data, usage statistics, or download history to any external server.</p>
-
-            <h2>Local Processing Only</h2>
-            <p>All downloads are processed locally using yt-dlp and ffmpeg. The only network requests made are directly to YouTube's servers to fetch the video you requested.</p>
-
-            <h2>Thumbnail Previews</h2>
-            <p>When you paste a YouTube URL, the app fetches a thumbnail image and video metadata directly from YouTube's public APIs (img.youtube.com and youtube.com/oembed). No data about this request is logged or stored by us.</p>
-
-            <h2>No Cookies or Tracking</h2>
-            <p>This application does not use cookies, analytics, or any third-party tracking scripts.</p>
-
-            <h2>Third-Party Services</h2>
-            <p>The only third-party service involved is YouTube itself, when fetching video content. YouTube's own <a href="https://policies.google.com/privacy" target="_blank" class="text-red-400 hover:underline">Privacy Policy</a> applies to those requests.</p>
-
-            <h2>Contact</h2>
-            <p>If you have any questions about this policy, please <a href="/contact" class="text-red-400 hover:underline">contact us</a>.</p>
+        <div class="tldr-box mb-6">
+            <div class="text-xs font-bold text-red-400 uppercase tracking-widest mb-1">TL;DR</div>
+            <p class="text-sm text-zinc-300 leading-relaxed">We collect nothing. Everything runs on your machine. No tracking, no cookies, no data sent anywhere.</p>
         </div>
+
+        <div class="card rounded-2xl p-6">
+            <div class="prose-section">
+                <h2>No data collection</h2>
+                <p>YT Downloader runs entirely on your local machine. We do not collect, store, or transmit any personal data, usage statistics, or download history to any external server.</p>
+            </div>
+            <div class="prose-section">
+                <h2>Local processing only</h2>
+                <p>All downloads are processed locally using yt-dlp and ffmpeg. The only network requests made are directly to YouTube's servers to fetch the video you requested.</p>
+            </div>
+            <div class="prose-section">
+                <h2>Thumbnail and metadata</h2>
+                <p>When you paste a YouTube URL, the app may fetch thumbnail images and video metadata directly from YouTube's public APIs. No data about this request is logged or stored by us.</p>
+            </div>
+            <div class="prose-section">
+                <h2>No cookies or tracking</h2>
+                <p>This application does not use cookies, analytics, session tracking, or any third-party tracking scripts of any kind.</p>
+            </div>
+            <div class="prose-section">
+                <h2>Third-party services</h2>
+                <p>The only third-party service involved is YouTube itself. YouTube's own <a href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a> applies to those requests.</p>
+            </div>
+            <div class="prose-section">
+                <h2>Contact</h2>
+                <p>Questions about this policy? <a href="/contact">Get in touch</a>.</p>
+            </div>
+        </div>
+
     </div>
+
+    <footer style="border-top: 1px solid rgba(255,255,255,0.06);">
+        <div class="max-w-5xl mx-auto px-5 py-7 flex flex-col md:flex-row items-center justify-between gap-4">
+            <span class="text-xs text-zinc-700">© 2026 YT Downloader</span>
+            <div class="flex items-center gap-6">
+                <a href="/privacy" class="footer-link">Privacy</a>
+                <a href="/terms" class="footer-link">Terms</a>
+                <a href="/faq" class="footer-link">FAQ</a>
+                <a href="/contact" class="footer-link">Contact</a>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>

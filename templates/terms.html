@@ -3,62 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms of Use – YT Downloader</title>
+    <title>Terms of Use - YT Downloader</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 60%, #16213e 100%); }
-        .nav-link { transition: color 0.2s; }
-        .nav-link:hover { color: #ef4444; }
-        .card { background: rgba(24,24,27,0.85); backdrop-filter: blur(8px); }
-        .prose p, .prose li { color: #9ca3af; line-height: 1.75; }
-        .prose h2 { color: #fff; font-size: 1.125rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+        body { background: #0a0a0a; font-family: system-ui, -apple-system, sans-serif; }
+        .nav-glass { background: rgba(10,10,10,0.9); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .nav-link { color: #71717a; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
+        .nav-link:hover { color: #fff; }
+        .card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); }
+        .badge { background: rgba(220,38,38,0.1); border: 1px solid rgba(220,38,38,0.25); color: #f87171; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; }
+        .footer-link { color: #52525b; font-size: 0.8rem; transition: color 0.2s; }
+        .footer-link:hover { color: #a1a1aa; }
+        .prose-section { padding: 1.25rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .prose-section:last-child { border-bottom: none; padding-bottom: 0; }
+        .prose-section h2 { font-size: 0.875rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
+        .prose-section p { font-size: 0.875rem; color: #71717a; line-height: 1.75; }
+        .prose-section a { color: #ef4444; transition: color 0.2s; }
+        .prose-section a:hover { color: #f87171; }
+        .warning-box { background: rgba(234,179,8,0.06); border: 1px solid rgba(234,179,8,0.15); border-radius: 12px; padding: 1rem 1.25rem; }
     </style>
 </head>
 <body class="min-h-screen text-white">
 
-    <nav class="sticky top-0 z-50 bg-zinc-950/90 backdrop-blur border-b border-zinc-800">
-        <div class="max-w-5xl mx-auto px-6 py-3 flex items-center justify-between">
-            <a href="/" class="flex items-center gap-2 font-bold text-lg tracking-tight">
-                <span class="text-red-500 text-2xl">▶</span> YT Downloader
+    <nav class="nav-glass sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-5 h-14 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-2 font-bold text-white tracking-tight">
+                <span class="bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-md">YT</span>
+                Downloader
             </a>
-            <div class="flex items-center gap-6 text-sm font-medium text-gray-300">
+            <div class="flex items-center gap-7">
                 <a href="/" class="nav-link">Home</a>
                 <a href="/about" class="nav-link">About</a>
-                <a href="/faq" class="nav-link">FAQ</a>
                 <a href="/contact" class="nav-link">Contact</a>
             </div>
         </div>
     </nav>
 
-    <div class="max-w-3xl mx-auto pt-14 px-6 pb-20">
-        <div class="text-center mb-10">
-            <h1 class="text-4xl font-extrabold mb-3">Terms of <span class="text-red-500">Use</span></h1>
-            <p class="text-gray-500 text-sm">Last updated: April 2026</p>
+    <div class="max-w-2xl mx-auto px-5 pt-16 pb-24">
+
+        <div class="mb-8">
+            <div class="inline-flex items-center gap-2 badge px-3 py-1.5 rounded-full mb-5">
+                <span class="w-1.5 h-1.5 bg-red-500 rounded-full"></span>
+                Legal
+            </div>
+            <h1 class="text-4xl font-extrabold tracking-tight leading-tight mb-2">
+                Terms of <span class="text-red-500">Use</span>
+            </h1>
+            <p class="text-zinc-600 text-sm">Last updated: April 2026</p>
         </div>
 
-        <div class="card rounded-2xl p-8 border border-zinc-800 prose">
-            <h2>Personal Use Only</h2>
-            <p>YT Downloader is intended strictly for personal, non-commercial use. You may only download content that you own, have explicit permission to download, or that is in the public domain.</p>
-
-            <h2>Copyright Compliance</h2>
-            <p>You are solely responsible for ensuring your downloads comply with applicable copyright laws in your jurisdiction. Do not use this tool to download, reproduce, or distribute copyrighted material without authorization.</p>
-
-            <h2>YouTube Terms of Service</h2>
-            <p>Downloading YouTube videos may violate <a href="https://www.youtube.com/t/terms" target="_blank" class="text-red-400 hover:underline">YouTube's Terms of Service</a>. By using this tool, you acknowledge this risk and accept full responsibility.</p>
-
-            <h2>No Warranty</h2>
-            <p>This software is provided "as is" without warranty of any kind. We make no guarantees about uptime, accuracy, or fitness for any particular purpose.</p>
-
-            <h2>Limitation of Liability</h2>
-            <p>The developers of YT Downloader are not liable for any damages, legal issues, or losses arising from your use of this tool.</p>
-
-            <h2>Changes to These Terms</h2>
-            <p>These terms may be updated at any time. Continued use of the tool constitutes acceptance of the updated terms.</p>
-
-            <h2>Contact</h2>
-            <p>Questions? <a href="/contact" class="text-red-400 hover:underline">Get in touch</a>.</p>
+        <div class="warning-box mb-6">
+            <div class="text-xs font-bold text-yellow-400 uppercase tracking-widest mb-1">Important</div>
+            <p class="text-sm text-zinc-300 leading-relaxed">By using this tool, you agree to these terms. Use responsibly and in accordance with applicable copyright laws.</p>
         </div>
+
+        <div class="card rounded-2xl p-6">
+            <div class="prose-section">
+                <h2>Personal use only</h2>
+                <p>YT Downloader is intended strictly for personal, non-commercial use. You may only download content that you own, have explicit permission to download, or that is in the public domain.</p>
+            </div>
+            <div class="prose-section">
+                <h2>Copyright compliance</h2>
+                <p>You are solely responsible for ensuring your downloads comply with applicable copyright laws in your jurisdiction. Do not use this tool to download, reproduce, or distribute copyrighted material without authorization.</p>
+            </div>
+            <div class="prose-section">
+                <h2>YouTube Terms of Service</h2>
+                <p>Downloading YouTube videos may violate <a href="https://www.youtube.com/t/terms" target="_blank">YouTube's Terms of Service</a>. By using this tool, you acknowledge this risk and accept full responsibility.</p>
+            </div>
+            <div class="prose-section">
+                <h2>No warranty</h2>
+                <p>This software is provided "as is" without warranty of any kind. We make no guarantees about uptime, accuracy, or fitness for any particular purpose.</p>
+            </div>
+            <div class="prose-section">
+                <h2>Limitation of liability</h2>
+                <p>The developers of YT Downloader are not liable for any damages, legal issues, or losses arising from your use of this tool.</p>
+            </div>
+            <div class="prose-section">
+                <h2>Changes to these terms</h2>
+                <p>These terms may be updated at any time. Continued use of the tool constitutes acceptance of the updated terms.</p>
+            </div>
+            <div class="prose-section">
+                <h2>Contact</h2>
+                <p>Questions? <a href="/contact">Get in touch</a>.</p>
+            </div>
+        </div>
+
     </div>
+
+    <footer style="border-top: 1px solid rgba(255,255,255,0.06);">
+        <div class="max-w-5xl mx-auto px-5 py-7 flex flex-col md:flex-row items-center justify-between gap-4">
+            <span class="text-xs text-zinc-700">© 2026 YT Downloader</span>
+            <div class="flex items-center gap-6">
+                <a href="/privacy" class="footer-link">Privacy</a>
+                <a href="/terms" class="footer-link">Terms</a>
+                <a href="/faq" class="footer-link">FAQ</a>
+                <a href="/contact" class="footer-link">Contact</a>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>
