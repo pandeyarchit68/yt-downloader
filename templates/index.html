@@ -220,123 +220,88 @@
     </footer>
 
     <script>
-        const form = document.getElementById('dl-form');
-        const btn = document.getElementById('dl-btn');
-        const spinner = document.getElementById('spinner');
-        const btnText = document.getElementById('btn-text');
-        const urlInput = document.getElementById('url-input');
-        const preview = document.getElementById('preview');
-        const thumb = document.getElementById('thumb');
-        const vidTitle = document.getElementById('vid-title');
-        const vidChannel = document.getElementById('vid-channel');
+    const form = document.getElementById('dl-form');
+    const btn = document.getElementById('dl-btn');
+    const spinner = document.getElementById('spinner');
+    const btnText = document.getElementById('btn-text');
+    const urlInput = document.getElementById('url-input');
+    const preview = document.getElementById('preview');
+    const thumb = document.getElementById('thumb');
+    const vidTitle = document.getElementById('vid-title');
+    const vidChannel = document.getElementById('vid-channel');
 
-        const formatSelect = document.getElementById('format-select');
-        const qualitySelect = document.getElementById('quality-select');
-        const qualityLabel = document.getElementById('quality-label');
+    const formatSelect = document.getElementById('format-select');
+    const qualitySelect = document.getElementById('quality-select');
+    const qualityLabel = document.getElementById('quality-label');
 
-        const videoOptions = `
-            <option value="best">Best Available</option>
-            <option value="2160">4K - 2160p</option>
-            <option value="1440">2K - 1440p</option>
-            <option value="1080" selected>Full HD - 1080p</option>
-            <option value="720">HD - 720p</option>
-            <option value="480">SD - 480p</option>`;
+    // Format change logic
+    formatSelect.addEventListener('change', function () {
+        if (this.value === 'audio') {
+            qualityLabel.textContent = 'Audio Quality';
+            qualitySelect.innerHTML = `
+                <option value="192" selected>Best Quality - 192kbps</option>
+                <option value="128">High Quality - 128kbps</option>
+                <option value="96">Medium Quality - 96kbps</option>`;
+        } else {
+            qualityLabel.textContent = 'Quality';
+            qualitySelect.innerHTML = `
+                <option value="best">Best Available</option>
+                <option value="2160">4K - 2160p</option>
+                <option value="1440">2K - 1440p</option>
+                <option value="1080" selected>Full HD - 1080p</option>
+                <option value="720">HD - 720p</option>
+                <option value="480">SD - 480p</option>`;
+        }
+    });
 
-        const audioOptions = `
-            <option value="192" selected>Best Quality - 192kbps</option>
-            <option value="128">High Quality - 128kbps</option>
-            <option value="96">Medium Quality - 96kbps</option>`;
+    // Thumbnail Preview
+    let debounceTimer;
+    urlInput.addEventListener('input', function () {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(function () {
+            const url = urlInput.value.trim();
+            const match = url.match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([A-Za-z0-9_-]{11})/);
+            if (match && match[1]) {
+                const id = match[1];
+                thumb.src = 'https://img.youtube.com/vi/' + id + '/hqdefault.jpg';
+                vidTitle.textContent = 'Loading...';
+                preview.classList.remove('hidden');
 
-        formatSelect.addEventListener('change', function () {
-            if (this.value === 'audio') {
-                qualityLabel.textContent = 'Audio Quality';
-                qualitySelect.innerHTML = audioOptions;
-            } else {
-                qualityLabel.textContent = 'Quality';
-                qualitySelect.innerHTML = videoOptions;
-            }
-        });
-
-        let debounceTimer;
-        urlInput.addEventListener('input', function () {
-            clearTimeout(debounceTimer);
-            debounceTimer = setTimeout(function () {
-                const url = urlInput.value.trim();
-                const match = url.match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([A-Za-z0-9_-]{11})/);
-                if (match && match[1]) {
-                    const id = match[1];
-                    thumb.src = 'https://img.youtube.com/vi/' + id + '/hqdefault.jpg';
-                    vidTitle.textContent = 'Loading...';
-                    vidChannel.textContent = '';
-                    preview.classList.remove('hidden');
-                    fetch('https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=' + id + '&format=json')
-                        .then(function (r) { return r.json(); })
-                        .then(function (data) {
-                            vidTitle.textContent = data.title || 'YouTube Video';
-                            vidChannel.textContent = data.author_name || '';
-                        })
-                        .catch(function () {
-                            vidTitle.textContent = 'YouTube Video';
-                        });
-                } else {
-                    preview.classList.add('hidden');
-                }
-            }, 400);
-        });
-
-        form.addEventListener('submit', function () {
-            const token = Math.random().toString(36).slice(2) + Date.now().toString(36);
-            document.getElementById('dl-token').value = token;
-
-            spinner.style.display = 'block';
-            btnText.textContent = 'Preparing...';
-            btn.disabled = true;
-            btn.style.opacity = '0.7';
-
-            const overlay = document.getElementById('loading-overlay');
-            const overlayMsg = document.getElementById('overlay-msg');
-            overlay.classList.remove('hidden');
-
-            const messages = [
-                'Connecting to YouTube...',
-                'Fetching video stream...',
-                'Processing your video...',
-                'Merging audio & video...',
-                'Almost ready, hang tight...',
-                'Preparing your download...'
-            ];
-            let i = 0;
-            overlayMsg.textContent = messages[0];
-            const msgInterval = setInterval(function () {
-                i = (i + 1) % messages.length;
-                overlayMsg.textContent = messages[i];
-            }, 3000);
-
-            function dismissOverlay() {
-                clearInterval(msgInterval);
-                clearInterval(poller);
-                clearTimeout(safetyTimer);
-                overlay.classList.add('hidden');
-                spinner.style.display = 'none';
-                btnText.textContent = 'Download Now';
-                btn.disabled = false;
-                btn.style.opacity = '1';
-            }
-
-            const poller = setInterval(function () {
-                fetch('/status/' + token)
-                    .then(function (r) { return r.json(); })
-                    .then(function (data) {
-                        if (data.status === 'done' || data.status === 'error') {
-                            dismissOverlay();
-                        }
+                fetch('https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=' + id + '&format=json')
+                    .then(r => r.json())
+                    .then(data => {
+                        vidTitle.textContent = data.title || 'YouTube Video';
+                        vidChannel.textContent = data.author_name || '';
                     })
-                    .catch(function () {});
-            }, 800);
+                    .catch(() => {
+                        vidTitle.textContent = 'YouTube Video';
+                    });
+            } else {
+                preview.classList.add('hidden');
+            }
+        }, 500);
+    });
 
-            const safetyTimer = setTimeout(dismissOverlay, 120000);
-        });
-    </script>
+    // Loading Overlay
+    form.addEventListener('submit', function () {
+        const overlay = document.getElementById('loading-overlay');
+        overlay.classList.remove('hidden');
+
+        spinner.style.display = 'block';
+        btnText.textContent = 'Processing...';
+        btn.disabled = true;
+        btn.style.opacity = '0.7';
+
+        // Auto hide after 2 minutes (safety)
+        setTimeout(() => {
+            overlay.classList.add('hidden');
+            spinner.style.display = 'none';
+            btnText.textContent = 'Download Now';
+            btn.disabled = false;
+            btn.style.opacity = '1';
+        }, 120000);
+    });
+</script>
 
 </body>
 </html>
